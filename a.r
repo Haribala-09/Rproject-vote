@@ -1,6 +1,6 @@
 library(ggplot2)
-data <- read.csv("hurricanes.csv")
-
+#data <- read.csv("hurricanes.csv")
+data<-read.csv("~/Documents/Rproject-vote/hurricanes.csv")
 
 data$wind <- as.numeric(data$wind)
 
