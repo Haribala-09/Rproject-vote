@@ -1,5 +1,5 @@
 library(ggplot2)
-data <- read.csv("~/Documents/Rproject-vote/hurricanes.csv")
+data <- read.csv("hurricanes.csv")
 
 
 data$wind <- as.numeric(data$wind)
@@ -34,7 +34,7 @@ ggplot(data, aes(x = factor(year))) +
   #scale_x_continuous(breaks = seq(min(data$year), max(data$year), by = 30))
 
 # Boxplot of wind speeds by decade
-data$decade <- as.factor(cut(data$year, breaks = seq(1970, 2030, by = 40), labels = seq(1970, 2020, by = 10)))
+data$decade <- as.factor(cut(data$year, breaks = seq(1970, 2030, by = 10), labels = seq(1970, 2020, by = 10)))
 ggplot(data, aes(x = decade, y = wind)) +
   geom_boxplot() +
   labs(title = "Boxplot of Wind Speeds by Decade",
@@ -51,3 +51,15 @@ ggplot(data, aes(x = wind)) +
 # Pie chart showing the proportion of hurricanes by category
 category_counts <- table(cut(data$wind, breaks = c(0, 95, 110, 130, 155, Inf), labels = c("Category 1", "Category 2", "Category 3", "Category 4", "Category 5")))
 pie(category_counts, main = "Proportion of Hurricanes by Category")
+
+
+intervals <-c( 62,95, 118,136, 153, 177, 208)
+
+# # Plotting frequency of wind speed intervals
+hist(data$wind, 
+     breaks = c( intervals),
+     main = "Frequency of Wind Speed Intervals",
+     xlab = "Wind Speed (mph)",
+     ylab = "Frequency",
+     col = "skyblue",
+     border = "white")
